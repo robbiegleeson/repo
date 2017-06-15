@@ -13,6 +13,10 @@
     "Git",
     "Repo"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robbiegleeson/repo.git"
+  },
   "author": "Rob Gleeson",
   "license": "ISC",
   "dependencies": {
