@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "colors": "^1.1.2",
-    "ini": "^1.3.4"
+    "ini": "^1.3.4",
+    "open": "0.0.5"
   }
 }
