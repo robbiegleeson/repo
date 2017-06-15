@@ -9,8 +9,7 @@ Open Git project page from the command line!
 
 Pay attention because this is very complicated..
 
-- Clone the repo `git clone https://github.com/robbiegleeson/repo.git`
-- Run `cd repo && npm install -g`
+- `npm install -g open-repo`
 - Run `repo`
 
 
