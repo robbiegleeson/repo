@@ -1,0 +1,22 @@
+{
+  "name": "repo",
+  "version": "1.0.0",
+  "description": "Open Git project page from the command line",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "repo": "./index.js"
+  },
+  "keywords": [
+    "Git",
+    "Repo"
+  ],
+  "author": "Rob Gleeson",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "ini": "^1.3.4"
+  }
+}
