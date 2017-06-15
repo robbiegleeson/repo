@@ -1,5 +1,5 @@
 {
-  "name": "repo",
+  "name": "git-repo",
   "version": "1.0.0",
   "description": "Open Git project page from the command line",
   "main": "index.js",
