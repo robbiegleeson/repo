@@ -36,7 +36,7 @@ try {
         url = url.replace(':', '/');
         open(`http://${url}/tree/${branch}`);
     } else {
-        open(`${url}/tree/${branch}`);
+        open(`${url}`);
     }
 } catch (e) {
     console.log(colors.red('No repo found!'));
