@@ -5,6 +5,8 @@ const colors = require('colors/safe');
 const open = require('open');
 const child_process = require('child_process');
 
+const urls = require('./urls');
+
 const GET_CURRENT_BRANCH_CMD = 'git symbolic-ref -q --short HEAD';
 const GET_CURRENT_TAG_CMD = 'git describe --tags --exact-match';
 
@@ -27,16 +29,13 @@ try {
         return;
     }
 
-    var url = config['remote "origin"'].url;
+    const url = urls.getHttpsUrlFromRemote(config['remote "origin"'].url);
     const branch = getCurrentBranch();
 
-    if (url.substring(0, 3) == "git") {
-        url = url.substring(4);
-        url = url.substring(0, url.length - 4);
-        url = url.replace(':', '/');
-        open(`http://${url}/tree/${branch}`);
+    if (branch) {
+        open(`${url}/tree/${branch}`);
     } else {
-        open(`${url}`);
+        open(url);
     }
 } catch (e) {
     console.log(colors.red('No repo found!'));
