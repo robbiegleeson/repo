@@ -7,8 +7,6 @@ notifications:
     on_success: never
     on_failure: always
 script:
-  - npm run build
-  - npm run lint
   - npm test
 after_success:
   - npm run coveralls

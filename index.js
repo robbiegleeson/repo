@@ -24,6 +24,13 @@ function getCurrentBranch() {
 }
 
 function openRepo() {
+  const origins = child_process.execSync('git branch -a').toString().trim();
+  const array = origins.split(/\r?\n/);
+  const branches = array.map(item => item.trim());
+
+  const remoteBranches = branches.filter(a => a.match(/remote/g));
+  const localBranches = branches.filter(a => !a.match(/remote/g));
+
   const config = ini.parse(fs.readFileSync('.git/config', 'utf-8'));
   if (!config) {
     console.log(colors.red('No Git repo found'));
@@ -33,14 +40,21 @@ function openRepo() {
   const url = urls.getHttpsUrlFromRemote(config['remote "origin"'].url);
   const branch = getCurrentBranch();
 
-  request.get(`${url}/tree/${branch}`)
-    .on('response', function(response) {
-      if (response.statusCode !== 404) {
+  if (branch === 'master') {
+    open(url);
+  } else {
+    for (var i = 0; i < remoteBranches.length; i++) {
+      const rb = remoteBranches[i];
+      const regex = new RegExp(branch, 'g');
+      if (rb.match(regex)) {
         open(`${url}/tree/${branch}`);
+        process.exit();
       } else {
         open(url);
+        process.exit();
       }
-    });
+    }
+  }
 }
 
 openRepo();
