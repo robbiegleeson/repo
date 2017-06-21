@@ -10,6 +10,7 @@ const urls = require('./urls');
 
 const GET_CURRENT_BRANCH_CMD = 'git symbolic-ref -q --short HEAD';
 const GET_CURRENT_TAG_CMD = 'git describe --tags --exact-match';
+const GET_ALL_BRANCGES = 'git branch -a';
 
 function execSync(cmd) {
   try {
@@ -23,10 +24,14 @@ function getCurrentBranch() {
   return execSync(GET_CURRENT_BRANCH_CMD) || execSync(GET_CURRENT_TAG_CMD);
 }
 
+function getAllBranches() {
+  let allBranches = child_process.execSync(GET_ALL_BRANCGES).toString().trim();
+  allBranches = allBranches.split(/\r?\n/);
+  return allBranches.map(item => item.trim());
+}
+
 function openRepo() {
-  const origins = child_process.execSync('git branch -a').toString().trim();
-  const array = origins.split(/\r?\n/);
-  const branches = array.map(item => item.trim());
+  const branches = getAllBranches();
 
   const remoteBranches = branches.filter(a => a.match(/remote/g));
   const localBranches = branches.filter(a => !a.match(/remote/g));
