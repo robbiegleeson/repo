@@ -4,7 +4,6 @@ const ini = require('ini');
 const colors = require('colors/safe');
 const open = require('open');
 const child_process = require('child_process');
-const request = require('request');
 
 const urls = require('./urls');
 
@@ -31,16 +30,16 @@ function getAllBranches() {
 }
 
 function openRepo() {
-  const branches = getAllBranches();
-
-  const remoteBranches = branches.filter(a => a.match(/remote/g));
-  const localBranches = branches.filter(a => !a.match(/remote/g));
-
   const config = ini.parse(fs.readFileSync('.git/config', 'utf-8'));
+
   if (!config) {
     console.log(colors.red('No Git repo found'));
     return;
   }
+
+  const branches = getAllBranches();
+
+  const remoteBranches = branches.filter(a => a.match(/remote/g));
 
   const url = urls.getHttpsUrlFromRemote(config['remote "origin"'].url);
   const branch = getCurrentBranch();
