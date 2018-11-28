@@ -1,6 +1,6 @@
 {
   "name": "open-repo",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Open Git project page from the command line",
   "main": "index.js",
   "scripts": {
