@@ -2,7 +2,7 @@
 
 ![NPM](https://github.com/robbiegleeson/repo/raw/master/npm.png "NPM")
 
-[Repo NPM](https://www.npmjs.com/package/repo)
+[Repo NPM](https://www.npmjs.com/package/open-repo)
 
 
 Open Git project page from the command line!
