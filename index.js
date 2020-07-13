@@ -30,7 +30,7 @@ function getAllBranches() {
 }
 
 function openRepo() {
-  const config = ini.parse(fs.readFileSync('.git/config', 'utf-8'));
+  const config = ini.parse(fs.readFileSync('.git/config', 'utf-8')) || null;
 
   if (!config) {
     console.log(colors.red('No Git repo found'));
